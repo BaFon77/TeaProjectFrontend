@@ -73,6 +73,7 @@ export const logoutUser =
                 // await api.auth.logout()
 
                 localStorage.removeItem("access_token");
+                localStorage.removeItem("profile_data");
 
                 dispatch(logoutSuccess())
 

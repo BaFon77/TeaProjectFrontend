@@ -12,6 +12,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
 }
 
 #navbar li {
@@ -115,3 +116,86 @@ nav {
         color: black;
     }
 }
+
+.user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu li a:hover {
+    background-color: transparent; /* Изменено значение на прозрачный */
+}
+
+
+.user-profile:hover .dropdown-menu {
+    display: block;
+}
+
+#navbar li button,
+#navbar .username {
+    border: none;
+    background-color: transparent;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2a3239;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+    margin-left: 0; /* Оставить стандартное значение для всех элементов */
+}
+
+#navbar li button:hover::after,
+#navbar .username:hover::after {
+    content: '';
+    width: 30%;
+    height: 2px;
+    background: #17cf97;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+#navbar li button:hover,
+#navbar .username:hover {
+    color: #17cf97;
+}
+
+#navbar button:focus {
+    outline: none;
+}
+
+.dropdown-menu li a.active {
+    background-color: transparent !important;
+}
+
+
+
+
+
+

@@ -26,6 +26,17 @@ const Header = () => {
         setIsClicked(!isClicked);
     };
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const handleToggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+
+    const profileData = localStorage.getItem('profileData');
+    const profileDataJson = profileData && JSON.parse(profileData);
+    const username = profileDataJson.username;
+
     return (
         <nav>
             <svg xmlns="http://www.w3.org/2000/svg" width="82" height="40" fill="none"
@@ -71,11 +82,31 @@ const Header = () => {
                             <NavLink to="/dashboard" className="LinkClass">Dashboard</NavLink>
                         </li>
                     )}
+                    {/*{isLoggedIn && (*/}
+                    {/*    <li>*/}
+                    {/*        <NavLink to="/profile" className="LinkClass">{username}</NavLink>*/}
+                    {/*    </li>*/}
+                    {/*)}*/}
                     {isLoggedIn && (
-                        <li>
-                            <button onClick={() => dispatch(logoutUser())}>Logout</button>
+                        <li className="user-profile" onClick={handleToggleDropdown}>
+                            <span className="username">{username}</span>
+                            {isDropdownOpen && (
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <NavLink to="/profile" className="LinkClass" style={{marginLeft: -15}}>Профиль</NavLink>
+                                    </li>
+                                    <li>
+                                        <button onClick={() => dispatch(logoutUser())}>Logout</button>
+                                    </li>
+                                </ul>
+                            )}
                         </li>
                     )}
+                    {/*{isLoggedIn && (*/}
+                    {/*    <li>*/}
+                    {/*        <button onClick={() => dispatch(logoutUser())}>Logout</button>*/}
+                    {/*    </li>*/}
+                    {/*)}*/}
                 </ul>
             </div>
 

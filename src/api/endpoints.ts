@@ -3,7 +3,6 @@ const Endpoints = {
         LOGIN: '/login',
         REFRESH: '/refresh',
         LOGOUT: '/logout',
-        PROFILE: '/profile',
         REGISTRY: '/register',
     }
 }
