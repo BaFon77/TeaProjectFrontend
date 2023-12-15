@@ -15,6 +15,11 @@ export const fetchTypes = async () => {
     return data
 }
 
+export const fetchProducts = async () => {
+    const {data} = await shopAxios.get('api/catalog')
+    return data
+}
+
 /*
 export const createBrand = async (brand) => {
     const {data} = await $authHost.post('api/brand', brand)

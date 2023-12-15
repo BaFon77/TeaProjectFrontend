@@ -7,6 +7,7 @@ import "./HeaderStyle.css";
 import {logoutUser} from "../../store/auth/actionCreators";
 import {fetchTypes} from "../../api/shop/shopApi";
 import {Dropdown} from "react-bootstrap";
+import { history } from '../../utils/history'
 
 const Header = () => {
     const isLoggedIn = useSelector(
@@ -54,6 +55,12 @@ const Header = () => {
         fetchData(); // Вызов функции для загрузки типов при монтировании компонента
     }, []);
 
+    const handleItemClick = (type: any) => {
+        // Вызываем функцию push объекта history с указанием пути, куда вы хотите перейти
+        history.push(`/catalog/${type.name}`);
+        window.location.reload();
+    };
+
     return (
         <nav>
             <NavLink to="/" className="LinkClass">
@@ -96,11 +103,12 @@ const Header = () => {
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 Каталог
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                                 {types.map((type, index) => (
-                                    <Dropdown.Item key={index}>{type.name}</Dropdown.Item>
-                                    ))}
+                                    <Dropdown.Item key={index} onClick={() => handleItemClick(type)}>
+                                        {type.name}
+                                    </Dropdown.Item>
+                                ))}
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
