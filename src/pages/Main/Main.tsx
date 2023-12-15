@@ -14,7 +14,6 @@ const Main = () => {
     const renderProfile = () => (
         <div>
             <div>Вы успешно авторизировались</div>
-            <button onClick={() => dispatch(logoutUser())}>Logout</button>
         </div>
     )
 

@@ -40,6 +40,7 @@ const Header = () => {
 
     return (
         <nav>
+            <NavLink to="/" className="LinkClass">
             <svg xmlns="http://www.w3.org/2000/svg" width="82" height="40" fill="none"
                  viewBox="0 0 82 40">
                 <path fill="#FFD43D" d="M73.365 19.71c0 2.904-2.241 5.31-5.27
@@ -66,6 +67,7 @@ const Header = () => {
                 5.975-4.855 10.871-11.162 10.871Zm0-5.52c3.029 0
                 5.27-2.406 5.27-5.31 0-2.905-2.241-5.312-5.27-5.312-3.03 0-5.228 2.407-5.228 5.311 0 2.905 2.199
                 5.312 5.228 5.312ZM0 0h5.892v30H0V0ZM82 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path></svg>
+                </NavLink>
             <div>
                 <ul id="navbar"
                 className={isClicked ?
@@ -74,16 +76,11 @@ const Header = () => {
                         <NavLink to="/" className="LinkClass">Main</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" className="LinkClass">Каталог</NavLink>
+                        <NavLink to="/catalog" className="LinkClass">Каталог</NavLink>
                     </li>
                     {!isLoggedIn && (
                         <li>
                             <NavLink to={REGISTRATION_ROUTE} className="LinkClass">Registration</NavLink>
-                        </li>
-                    )}
-                    {isLoggedIn && (
-                        <li>
-                            <NavLink to="/dashboard" className="LinkClass">Dashboard</NavLink>
                         </li>
                     )}
                     {/*{isLoggedIn && (*/}
