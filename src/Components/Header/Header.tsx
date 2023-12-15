@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, NavLink} from "react-router-dom";
 import {IRootState, useAppDispatch} from "../../store";
@@ -6,6 +6,7 @@ import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts";
 import "./HeaderStyle.css";
 import {logoutUser} from "../../store/auth/actionCreators";
 import {fetchTypes} from "../../api/shop/shopApi";
+import {Dropdown} from "react-bootstrap";
 
 const Header = () => {
     const isLoggedIn = useSelector(
@@ -37,6 +38,21 @@ const Header = () => {
     const profileData = localStorage.getItem('profileData');
     const profileDataJson = profileData && JSON.parse(profileData);
     const username = localStorage.getItem('username') ? localStorage.getItem('username') : '';
+
+    const [types, setTypes] = useState<any[]>([]); // Используем any, чтобы TypeScript не жаловался на типы
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const typesData = await fetchTypes(); // Запрос на получение типов продуктов
+                setTypes(typesData); // Обновление состояния с полученными типами
+            } catch (error) {
+                console.error('Ошибка при получении типов продуктов:', error);
+            }
+        };
+
+        fetchData(); // Вызов функции для загрузки типов при монтировании компонента
+    }, []);
 
     return (
         <nav>
@@ -76,7 +92,17 @@ const Header = () => {
                         <NavLink to="/" className="LinkClass">Main</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/catalog" className="LinkClass">Каталог</NavLink>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                Каталог
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                {types.map((type, index) => (
+                                    <Dropdown.Item key={index}>{type.name}</Dropdown.Item>
+                                    ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </li>
                     {!isLoggedIn && (
                         <li>

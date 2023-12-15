@@ -12,7 +12,6 @@ import {shopAxios} from "../instance";
 
 export const fetchTypes = async () => {
     const {data} = await shopAxios.get('api/catalog')
-    console.log(data)
     return data
 }
 
