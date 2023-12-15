@@ -7,6 +7,9 @@ import { store } from ".."
 import { AxiosPromise } from "axios"
 import {useState} from "react";
 // import { isTokenExpired } from "../../utils/jwt"
+import * as jwt from 'jsonwebtoken';
+import { jwtDecode } from "jwt-decode";
+
 
 export const loginUser =
     (data: ILoginRequest) =>
@@ -15,6 +18,10 @@ export const loginUser =
                 dispatch(loginStart())
 
                 const res = await api.auth.login(data)
+
+                let decoded: any = jwtDecode(res.data.access_token);
+
+                localStorage.setItem('username', decoded.sub);
 
                 localStorage.setItem('access_token', res.data.access_token);
 
@@ -45,6 +52,10 @@ export const registryUser =
 
                 const res = await api.auth.registry(data)
 
+                let decoded: any = jwtDecode(res.data.access_token);
+
+                localStorage.setItem('username', decoded.sub);
+
                 localStorage.setItem('access_token', res.data.access_token);
 
                 dispatch(registrySuccess(res.data.access_token))
@@ -74,6 +85,7 @@ export const logoutUser =
 
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("profile_data");
+                localStorage.removeItem("username");
 
                 dispatch(logoutSuccess())
 

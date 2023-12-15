@@ -5,6 +5,7 @@ import {IRootState, useAppDispatch} from "../../store";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts";
 import "./HeaderStyle.css";
 import {logoutUser} from "../../store/auth/actionCreators";
+import {fetchTypes} from "../../api/shop/shopApi";
 
 const Header = () => {
     const isLoggedIn = useSelector(
@@ -35,7 +36,7 @@ const Header = () => {
 
     const profileData = localStorage.getItem('profileData');
     const profileDataJson = profileData && JSON.parse(profileData);
-    const username = profileDataJson.username;
+    const username = localStorage.getItem('username') ? localStorage.getItem('username') : '';
 
     return (
         <nav>
@@ -71,6 +72,9 @@ const Header = () => {
                 "#navbar active" : "navbar"}>
                     <li>
                         <NavLink to="/" className="LinkClass">Main</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/" className="LinkClass">Каталог</NavLink>
                     </li>
                     {!isLoggedIn && (
                         <li>

@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Main from "./pages/Main";
 import Dashboard from "./pages/Dashboard";
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {publicRoutes} from "./Components/routes";
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Main/>}></Route>
             <Route path="/Dashboard" element={<Dashboard/>}></Route>
         </Routes>
+        <Footer/>
     </Router>
   );
 }
