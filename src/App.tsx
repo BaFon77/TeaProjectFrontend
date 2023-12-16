@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {publicRoutes} from "./Components/routes";
+import CategoryProducts from "./Components/CategoryProducts";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             )}
             <Route path="/" element={<Main/>}></Route>
             <Route path="/Dashboard" element={<Dashboard/>}></Route>
+            <Route path="/catalog/:category" Component={CategoryProducts} />
         </Routes>
         <Footer/>
     </Router>
