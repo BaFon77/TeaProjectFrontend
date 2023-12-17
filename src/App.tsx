@@ -7,8 +7,13 @@ import Footer from "./Components/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {publicRoutes} from "./Components/routes";
 import CategoryProducts from "./Components/CategoryProducts";
+import BasketZero from "./pages/BasketZero/BasketZero";
+import ShoppingCart from "./pages/ShoppingCart";
 
 function App() {
+
+    const orders = []
+
   return (
     <Router>
         <Header/>
@@ -23,6 +28,10 @@ function App() {
         <Footer/>
     </Router>
   );
+}
+
+function addToOrder(item: any) {
+    
 }
 
 export default App;

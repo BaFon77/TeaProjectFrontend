@@ -1,0 +1,12 @@
+.basketZero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(360deg, #211F2080 0%, #44403F80 100%);
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

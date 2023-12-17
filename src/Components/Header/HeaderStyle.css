@@ -194,6 +194,30 @@ nav {
     background-color: transparent !important;
 }
 
+.shop-cart-button {
+    float: right;
+    cursor: pointer;
+    transition: color 500ms ease;
+}
+
+.shop-cart-button:hover,
+.shop-cart-button:active {
+    color: #dc3d3d;
+    transform: scale(1.5);
+}
+
+.shop-cart {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 450px;
+    background: #fafafa;
+    -webkit-box-shadow: 4px 5px 15px -7px #606060;
+    box-shadow: 4px 5px 15px -7px #606060;
+    z-index: 1000;
+    padding: 20px;
+}
+
 
 
 

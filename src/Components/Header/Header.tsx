@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import {IRootState, useAppDispatch} from "../../store";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts";
 import "./HeaderStyle.css";
@@ -8,6 +8,9 @@ import {logoutUser} from "../../store/auth/actionCreators";
 import {fetchTypes} from "../../api/shop/shopApi";
 import {Dropdown} from "react-bootstrap";
 import { history } from '../../utils/history'
+import {FaShoppingCart} from "react-icons/fa";
+import BasketZero from "../../pages/BasketZero/BasketZero";
+import ShoppingCart from "../../pages/ShoppingCart";
 
 const Header = () => {
     const isLoggedIn = useSelector(
@@ -42,6 +45,8 @@ const Header = () => {
 
     const [types, setTypes] = useState<any[]>([]); // Используем any, чтобы TypeScript не жаловался на типы
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -57,9 +62,14 @@ const Header = () => {
 
     const handleItemClick = (type: any) => {
         // Вызываем функцию push объекта history с указанием пути, куда вы хотите перейти
-        history.push(`/catalog/${type.name}`);
-        window.location.reload();
+        navigate(`/catalog/${type.name}`);
+        // window.location.reload();
     };
+
+    let [cartOpen, setCartOpen] = useState(false);
+
+    const cartItems = useSelector((state: { cartItems: any[] }) => state.cartItems);
+    console.log("123" + cartItems)
 
     return (
         <nav>
@@ -122,6 +132,21 @@ const Header = () => {
                     {/*        <NavLink to="/profile" className="LinkClass">{username}</NavLink>*/}
                     {/*    </li>*/}
                     {/*)}*/}
+
+                    {isLoggedIn && (
+                        <FaShoppingCart
+                            onClick={() => setCartOpen(!cartOpen)} // Показать/скрыть корзину
+                            className={`shop-cart-button ${cartOpen && 'active'}`}
+                        />
+                    )}
+
+                    {cartOpen && (
+                        <div className='shop-cart'>
+                            {/* Покажи содержимое корзины, используя компонент ShoppingCart */}
+                            <ShoppingCart cartItems={cartItems} />
+                        </div>
+                    )}
+
                     {isLoggedIn && (
                         <li className="user-profile" onClick={handleToggleDropdown}>
                             <span className="username">{username}</span>

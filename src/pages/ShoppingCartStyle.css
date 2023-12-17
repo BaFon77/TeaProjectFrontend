@@ -1,0 +1,30 @@
+.shop-cart-item {
+    width: 100%;
+    color: #797979;
+    font-weight: 600;
+}
+
+.shop-cart-item img {
+    width: 70px;
+    float: left;
+    margin-right: 20px;
+}
+
+.shop-cart-item h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.delete-icon {
+    color: #ca5252;
+    float: right;
+    position: relative;
+    top: -25px;
+    cursor: pointer;
+    transition: color, transform 500ms ease;
+}
+
+.delete-icon:hover {
+    color: #dc3d3d;
+    transform: scale(1.5);
+}
