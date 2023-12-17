@@ -68,11 +68,6 @@ const Main = () => {
                     </div>
                 ))}
             </main>
-
-            <div>
-                {/* Отображение корзины с передачей cartItems */}
-                <ShoppingCart cartItems={cartItems} />
-            </div>
         </div>
     );
 };
