@@ -54,3 +54,15 @@ main .add-to-cart {
 main .add-to-cart:hover {
     transform: scale(1.5) translateY(-5px);
 }
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Можете изменить значение отступа */
+}
+
+.search-input {
+    width: 300px; /* Можете изменить ширину поля ввода */
+    padding: 10px;
+    font-size: 16px;
+}

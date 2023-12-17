@@ -43,25 +43,24 @@ const Header = () => {
     const profileDataJson = profileData && JSON.parse(profileData);
     const username = localStorage.getItem('username') ? localStorage.getItem('username') : '';
 
-    const [types, setTypes] = useState<any[]>([]); // Используем any, чтобы TypeScript не жаловался на типы
+    const [types, setTypes] = useState<any[]>([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const typesData = await fetchTypes(); // Запрос на получение типов продуктов
-                setTypes(typesData); // Обновление состояния с полученными типами
+                const typesData = await fetchTypes();
+                setTypes(typesData);
             } catch (error) {
                 console.error('Ошибка при получении типов продуктов:', error);
             }
         };
 
-        fetchData(); // Вызов функции для загрузки типов при монтировании компонента
+        fetchData();
     }, []);
 
     const handleItemClick = (type: any) => {
-        // Вызываем функцию push объекта history с указанием пути, куда вы хотите перейти
         navigate(`/catalog/${type.name}`);
         // window.location.reload();
     };
@@ -135,14 +134,13 @@ const Header = () => {
 
                     {isLoggedIn && (
                         <FaShoppingCart
-                            onClick={() => setCartOpen(!cartOpen)} // Показать/скрыть корзину
+                            onClick={() => setCartOpen(!cartOpen)}
                             className={`shop-cart-button ${cartOpen && 'active'}`}
                         />
                     )}
 
                     {cartOpen && (
                         <div className='shop-cart'>
-                            {/* Покажи содержимое корзины, используя компонент ShoppingCart */}
                             <ShoppingCart cartItems={cartItems} />
                         </div>
                     )}

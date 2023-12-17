@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './CategoryStyle.css';
@@ -10,6 +10,12 @@ const CategoryProducts = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const dispatch = useAppDispatch();
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
         const fetchCategoryProducts = async () => {
@@ -36,8 +42,17 @@ const CategoryProducts = () => {
     return (
         <div>
             <h1>Товары в категории {category}</h1>
+            <div className="input-container">
+                <input
+                    className="search-input"
+                    type="text"
+                    placeholder="Поиск по товарам"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
             <main>
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                     <div key={product.id} className='item'>
                         <img src={"../img/" + "houjicha.jpg"} />
                         <h2>{product.name}</h2>

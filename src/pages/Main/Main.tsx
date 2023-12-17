@@ -15,7 +15,11 @@ const Main = () => {
 
     const cartItems = useSelector((state: { cartItems: any[] }) => state.cartItems);
 
+    const [searchTerm, setSearchTerm] = useState('');
 
+    const filteredProducts = products.filter((product: { name: string; }) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
         const fetchCategoryProducts = async () => {
@@ -56,9 +60,18 @@ const Main = () => {
 
     return (
         <div>
+            <div className="input-container">
+                <input
+                    className="search-input"
+                    type="text"
+                    placeholder="Поиск по товарам"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
             <h2></h2>
             <main>
-                {products.map((product: any) => (
+                {filteredProducts.map((product: any) => (
                     <div key={product.id} className='item'>
                         <img src={"../img/" + "houjicha.jpg"} />
                         <h2>{product.name}</h2>
